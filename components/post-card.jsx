@@ -11,7 +11,7 @@ export default function PostCard({ post, featured = false }) {
   const safePost = {
     id: post?.id || '',
     title: post?.title || 'Untitled',
-    slug: post?.slug || '',
+    slug: post?.slug || 'no-slug',
     category: post?.category || 'uncategorized',
     featured_image: post?.featured_image || null,
     excerpt: post?.excerpt || '',
@@ -61,7 +61,15 @@ export default function PostCard({ post, featured = false }) {
 
   return (
     <article className={cardClasses}>
-      <Link href={linkPath}>
+      <Link 
+      href=
+      {linkPath}
+      onClick={() => {
+        if (typeof window !== "undefined") {
+          localStorage.setItem("selectedPost", JSON.stringify(safePost))
+        }
+      }}
+      >
         <div className="relative overflow-hidden">
           {/* <Image
             src={safePost.featured_image || "/placeholder.svg?height=300&width=500"}

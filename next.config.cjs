@@ -64,23 +64,20 @@ const nextConfig = {
   },
   images: {
     domains: [
+      'scontent-lhr6-2.xx.fbcdn.net', // ✅ Add this exact one
+      'scontent.xx.fbcdn.net',
+      'fbcdn.net',
+      'scontent-lhr8-1.xx.fbcdn.net',
       'prod-files-secure.s3.us-west-2.amazonaws.com',
       'i.postimg.cc',
       'www.notion.so',
       'media.houseandgarden.co.uk',
-      'scontent-lhr8-1.xx.fbcdn.net',
-      'scontent.xx.fbcdn.net',
-      'fbcdn.net'
+      'scontent-lhr6-2.xx.fbcdn.net'
     ],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.fbcdn.net',
-        pathname: '/**'
-      },
-      {
-        protocol: 'https',
-        hostname: 'scontent-*.xx.fbcdn.net',
+        hostname: '**.fbcdn.net',
         pathname: '/**'
       }
     ],

@@ -363,7 +363,7 @@ export async function GET() {
           filter: {
             property: 'Status',
             status: {
-              equals: 'Life'
+              equals: 'AI Finished'
             }
           }
         })
@@ -378,6 +378,8 @@ export async function GET() {
       const title = post.properties?.Name?.title?.[0]?.plain_text || 
                    post.properties?.['Post name']?.title?.[0]?.plain_text || 
                    'Untitled'
+
+      console.log("Post Data: ", post);
       
       return {
         id: post.id,
