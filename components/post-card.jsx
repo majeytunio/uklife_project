@@ -43,9 +43,16 @@ export default function PostCard({ post, featured = false }) {
     }
   }
 
-  const cardClasses = featured
-    ? "group bg-card rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-border hover:border-primary transform hover:-translate-y-2"
-    : "group bg-card rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:border-primary transform hover:-translate-y-1"
+  let cardClasses = [];
+  if(featured.category === "book-reviews"){
+    cardClasses = featured
+      ? "theme-book-reviews group bg-card rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-border hover:border-primary transform hover:-translate-y-2"
+      : "theme-book-reviews group bg-card rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:border-primary transform hover:-translate-y-1"
+  }else{
+    cardClasses = featured
+      ? "group bg-card rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-border hover:border-primary transform hover:-translate-y-2"
+      : "group bg-card rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:border-primary transform hover:-translate-y-1"
+  }
 
   // Generate the correct link path
   const linkPath = safePost.category === "life-blog" 
