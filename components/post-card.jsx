@@ -77,66 +77,52 @@ export default function PostCard({ post, featured = false }) {
         }
       }}
       >
-        <div className="relative overflow-hidden">
-          {/* <Image
-            src={safePost.featured_image || "/placeholder.svg?height=300&width=500"}
-            alt={safePost.title}
-            width={featured ? 600 : 400}
-            height={featured ? 400 : 250}
-            className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-            priority={featured}
-            onError={(e) => {
-              e.target.src = "/placeholder.svg?height=300&width=500"
-            }}
-          /> */}
-
+        <div className="relative w-full h-48 md:h-56 overflow-hidden group">
           {!imageError && post.featured_image ? (
             <Image
               src={post.featured_image}
               alt={post.title}
-              width={400}
-              height={250}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
               onError={handleImageError}
-              unoptimized={true} // Important for external domains
+              unoptimized={true} // For external URLs
             />
           ) : (
-            <div className="image-placeholder">
-              {/* Fallback content */}
-              <Image
-                src="/images/featured-image-placeholder.png"
-                alt={post.title}
-                width={400}
-                height={250}
-                onError={handleImageError}
-                unoptimized={true} // Important for external domains
-              />
-            </div>
+            <Image
+              src="/images/post-placeholder.jpg"
+              alt={post.title}
+              fill
+              className="object-cover opacity-60"
+              onError={handleImageError}
+              unoptimized={true}
+            />
           )}
 
-
-          <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
           {/* Category Badge */}
           <div className="absolute top-4 left-4">
             <span
-              className={`px-3 py-1 rounded-full text-xs font-medium text-primary-foreground backdrop-blur-sm ${
-                safePost.category === "book-reviews" ? "bg-accent/80" : "bg-secondary/80"
+              className={`px-3 py-1 rounded-full text-xs font-medium text-white backdrop-blur-sm ${
+                safePost.category === "book-reviews" ? "bg-blue-600/80" : "bg-gray-700/80"
               }`}
             >
               {safePost.category === "book-reviews" ? "Book Review" : "UK Life"}
             </span>
           </div>
 
-          {/* Pinned Indicator */}
+          {/* Pinned Badge */}
           {safePost.pinned && (
             <div className="absolute top-4 right-4">
-              <span className="px-3 py-1 rounded-full text-xs font-medium text-primary-foreground bg-primary/80 backdrop-blur-sm flex items-center space-x-1">
+              <span className="px-3 py-1 rounded-full text-xs font-medium text-white bg-red-600/80 backdrop-blur-sm flex items-center space-x-1">
                 <Pin className="w-3 h-3" />
                 <span>Pinned</span>
               </span>
             </div>
           )}
         </div>
+
 
         <div className="p-6">
           <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-3">
