@@ -41,8 +41,8 @@
 
 
 // app/uklife/categories/[slug]/page.jsx
-import PostCard from "@/components/post-card";
 import { notFound } from "next/navigation";
+import PostCard from "../../../components/post-card";
 
 export default async function CategoryPage({ params }) {
   const { slug } = params;
