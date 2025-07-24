@@ -363,7 +363,7 @@ export async function GET() {
           filter: {
             property: 'Status',
             status: {
-              equals: 'AI Finished'
+              equals: 'Life'
             }
           }
         })
