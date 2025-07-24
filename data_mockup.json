@@ -1,0 +1,52 @@
+{
+    "success": true,
+    "data": {
+        "filteredStatus": "Life",
+        "categories": {
+            "lifeOther": {
+                "name": "人生其他",
+                "type": "multi_select",
+                "options": [
+                    {
+                        "id": "41d527ea-73b0-425b-910f-368c015a3d4e",
+                        "name": "個人所思 Personal thoughts",
+                        "color": "pink",
+                        "description": null,
+                        "englishName": "thoughts",
+                        "chineseName": "個人所思"
+                    },
+                    {
+                        "id": "f6c26a7c-114c-4e96-9860-c8e07a68b8df",
+                        "name": "在家創業 Homepreneur",
+                        "color": "pink",
+                        "description": null,
+                        "englishName": "Homepreneur",
+                        "chineseName": "在家創業"
+                    },
+                    {
+                        "id": "34e491fa-c9f0-4f79-a921-f17a9df579e8",
+                        "name": "親子育兒 Raising kids",
+                        "color": "red",
+                        "description": null,
+                        "englishName": "kids",
+                        "chineseName": "親子育兒"
+                    }
+                ]
+            },
+            "label": {
+                "name": "Label",
+                "type": "select",
+                "options": [
+                    {
+                        "id": "8fdbb2b8-afe0-41bf-9ab1-4487743fd19c",
+                        "name": "人生其他",
+                        "color": "brown",
+                        "description": null,
+                        "englishName": "人生其他",
+                        "chineseName": "人生其他"
+                    }
+                ]
+            }
+        }
+    }
+}
