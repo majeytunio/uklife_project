@@ -81,10 +81,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        <footer className="mt-12 text-sm text-gray-500">
-          Powered by Next.js, Notion, and Make.com
-        </footer>
       </div>
 
       
