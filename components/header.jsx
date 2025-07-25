@@ -1382,6 +1382,25 @@ export default function Header() {
           }
         ]
         
+      },
+      {
+        name: "個人所思 Personal thoughts",
+        subCategories: 
+        [
+          {
+              "name": "在家創業 Homepreneur",
+              "slug": "homepreneur"
+          },
+          {
+              "name": "感情生活 Love hacks",
+              "slug": "love hacks"
+          },
+          {
+              "name": "居家生活 Home style",
+              "slug": "home style"
+          }
+        ]
+        
       }
       
       // {
@@ -1574,14 +1593,14 @@ export default function Header() {
           const bookReviewsData = await bookReviewsRes.json()
           
           setMainNavItems([
-            {
-              name: "Life in UK",
-              subCategories: ukLifeData.success ? transformUKLifeData(ukLifeData.data) : []
-            },
-            {
-              name: "Book review",
-              subCategories: bookReviewsData.success ? transformBookReviewsData(bookReviewsData.data) : []
-            },
+            // {
+            //   name: "Life in UK",
+            //   subCategories: ukLifeData.success ? transformUKLifeData(ukLifeData.data) : []
+            // },
+            // {
+            //   name: "Book review",
+            //   subCategories: bookReviewsData.success ? transformBookReviewsData(bookReviewsData.data) : []
+            // },
             {
               name: "About Us",
               href: "/about"
@@ -1807,7 +1826,9 @@ export default function Header() {
                               onClick={() => toggleMobileMenu(item.name)}
                               className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200 font-medium"
                             >
-                              {item.name}
+                              <span dangerouslySetInnerHTML={{ __html: item.name }} />                              
+                              {/* {item.name} */}
+
                               {openMobileMenu === item.name ? (
                                 <ChevronUp className="w-5 h-5" />
                               ) : (
@@ -1824,7 +1845,8 @@ export default function Header() {
                                           onClick={() => toggleMobileMenu(category.name || category.name)}
                                           className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200"
                                         >
-                                          {category.name}
+                                          <span dangerouslySetInnerHTML={{ __html: category.name }} />
+                                          {/* {category.name} */}
                                           {openMobileMenu === (category.name || category.name) ? (
                                             <ChevronUp className="w-4 h-4" />
                                           ) : (
@@ -1842,7 +1864,9 @@ export default function Header() {
                                                 onClick={() => setIsMenuOpen(false)}
                                                 className="block px-3 py-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200 text-sm"
                                               >
-                                                {subCat.name.replace(/<br\s*\/?>/gi, "")}
+                                                <span dangerouslySetInnerHTML={{ __html: subCat.name }} />                              
+                                                {/* {item.name} */}
+                                                {/* {subCat.name.replace(/<br\s*\/?>/gi, "")} */}
                                               </Link>
                                             ))}
                                           </div>
@@ -1856,7 +1880,8 @@ export default function Header() {
                                         onClick={() => setIsMenuOpen(false)}
                                         className="block px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200"
                                       >
-                                        {category.name.replace(/<br\s*\/?>/gi, "")}
+                                        {/* {category.name.replace(/<br\s*\/?>/gi, "")} */}
+                                        <span dangerouslySetInnerHTML={{ __html: category.name }} />
                                       </Link>
                                     )}
                                   </div>
@@ -1886,7 +1911,8 @@ export default function Header() {
                               onClick={() => toggleMobileMenu(category.name || category.name)}
                               className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200 font-medium"
                             >
-                              {category.name}
+                              <span dangerouslySetInnerHTML={{ __html: category.name }} />
+                              {/* {category.name} */}
                               {openMobileMenu === (category.name || category.name) ? (
                                 <ChevronUp className="w-5 h-5" />
                               ) : (
@@ -1902,7 +1928,8 @@ export default function Header() {
                                     onClick={() => setIsMenuOpen(false)}
                                     className="block px-3 py-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200"
                                   >
-                                    {subCat.name}
+                                    <span dangerouslySetInnerHTML={{ __html: subCat.name }} />
+                                    {/* {subCat.name} */}
                                   </Link>
                                 ))}
                               </div>
@@ -1914,7 +1941,8 @@ export default function Header() {
                             onClick={() => setIsMenuOpen(false)}
                             className="block px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200 font-medium"
                           >
-                            {category.name}
+                            <span dangerouslySetInnerHTML={{ __html: category.name }} />
+                            {/* {category.name} */}
                           </Link>
                         )}
                       </div>

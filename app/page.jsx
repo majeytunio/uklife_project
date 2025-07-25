@@ -40,7 +40,7 @@ export default function HomePage() {
       </div> */}
 
 
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-800 px-4">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-800 px-4 mt-10">
         <h1 className="text-5xl font-bold text-center mb-4">
           Welcome to <span className="text-amber-800">yilungc</span>
         </h1>

@@ -224,7 +224,11 @@ import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import Header from "../../../components/header"
 import Image from "next/image"
-import { formatDate, calculateReadingTime } from "../../../lib/utils"
+import { richTextToHTML, formatDate, calculateReadingTime } from "../../../lib/utils"
+
+import ReactMarkdown from "react-markdown"
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 export default function UKLifeDetailPage() {
   const params = useParams()
@@ -274,7 +278,8 @@ export default function UKLifeDetailPage() {
             if (block.type === "paragraph") {
               const texts = block.paragraph.rich_text || []
               texts.forEach((txt) => {
-                fullContent += txt.plain_text + "\n\n"
+                // fullContent += txt.plain_text + "\n\n"
+                fullContent += richTextToHTML(texts) + "\n\n";
               })
             }
             // You can extend here to support other block types if needed.
@@ -363,15 +368,31 @@ export default function UKLifeDetailPage() {
               </div>
             </div>
 
-            <div className="prose prose-lg max-w-none text-gray-700 whitespace-pre-wrap">
+            {/* <div className="prose prose-lg max-w-none text-gray-700 whitespace-pre-wrap">
               {post.excerpt && (
                 <p className="text-xl text-gray-600 leading-relaxed mb-6">
                   {post.excerpt}
                 </p>
               )}
-              {/* Render the markdown/plain text content */}
               {contentMarkdown}
+            </div> */}
+
+            <div className="prose prose-lg max-w-none text-gray-700">
+              {post.excerpt && (
+                <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                  {post.excerpt}
+                </p>
+              )}
+
+              <ReactMarkdown
+                children={contentMarkdown}
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+              />
+
+              {/* <ReactMarkdown>{contentMarkdown}</ReactMarkdown> */}
             </div>
+
           </div>
         </div>
       </div>

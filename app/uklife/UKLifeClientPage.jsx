@@ -600,10 +600,10 @@ export default function UKLifeClientPage({ initialPosts = [], initialUniqueSubTo
                         </span>
                       </h2>
                       <Link 
-                        href={`/uk-life/${generateSlug(topic)}`}
+                        href={`/uk-life/category/${generateSlug(topic)}`}
                         className="text-sm font-medium text-primary hover:text-primary-hover transition-colors"
                       >
-                        View all →
+                        All →
                       </Link>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -267,7 +267,7 @@ export async function GET(request, { params }) {
             post.properties?.['Post date original']?.date?.start ||
             post.properties?.['Created time']?.created_time ||
             post.last_edited_time,
-        category: 'uklife',
+        category: 'book-reviews',
         tags: post.properties?.['讀書心得']?.multi_select?.map(cat => cat.name) || [],
         pinned: post.properties?.Pinned?.checkbox || false,
         excerpt: post.properties?.Excerpt?.rich_text?.[0]?.plain_text || '',
