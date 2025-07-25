@@ -203,7 +203,7 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const pageId = searchParams.get("pageId");
   // const filterStatus = "Life"; // Hardcoded to filter for Life status
-  const filterStatus = "AI Finished"; // Hardcoded to filter for Life status
+  const filterStatus = "Life"; // Hardcoded to filter for Life status
 
   if (!pageId) {
     return NextResponse.json(

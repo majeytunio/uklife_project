@@ -1246,6 +1246,8 @@
 "use client"
 
 import Link from "next/link"
+import slugify from "slugify";
+
 import { useState, useEffect } from "react"
 import { Menu, XIcon, Search, ChevronDown, ChevronUp } from "lucide-react"
 import { usePathname } from "next/navigation"
@@ -1307,26 +1309,88 @@ export default function Header() {
     // Add standalone categories
     const result = [
       {
-        name: "Raising kids",
-        subCategories: groupedCategories["親子育兒 Raising kids"]
+        name: "親子育兒 Raising kids",
+        subCategories: [
+            {
+                "name": "倫敦育兒 Raising kids in London",
+                "slug": "rasing kids in london"
+            },
+            {
+                "name": "英國私校 UK private education",
+                "slug": "uk private education"
+            },
+            {
+                "name": "海外家庭 Oversea family",
+                "slug": "oversea family"
+            },
+            {
+                "name": "母職 Being a Mother",
+                "slug": "being a mother"
+            }
+
+        ]
       },
       {
-        name: "Travel with kids",
-        subCategories: groupedCategories["親子旅遊 Travel with kids"]
+        name: "親子旅遊 Travel with kids",
+        subCategories: 
+        [
+          {
+              "name": "英倫親子遊 Travel with kids in UK",
+              "slug": "travel with kids in uk"
+          },
+          {
+              "name": "海外親子遊 Travel with kids aboard",
+              "slug": "travel with kids aboard"
+          },
+          {
+              "name": "台灣親子遊 Travel with kids in Taiwan",
+              "slug": "travel with kids in taiwan"
+          }
+        ]
       },
       {
-        name: "London afternoon tea",
-        slug: "london-afternoon-tea"
+        name: "英倫下午茶特輯 London afternoon tea",
+        slug: "london afternoon tea"
       },
       {
-        name: "London",
-        subCategories: groupedCategories["倫敦 London"]
-      },
-      {
-        name: "Personal thoughts",
-        subCategories: groupedCategories["個人所思 Personal thoughts"]
+        name: "倫敦 London",
+        subCategories: 
+        [
+          {
+              "name": "倫敦美食 London restaurants",
+              "slug": "london restaurants"
+          },
+          {
+              "name": "倫敦總有新鮮事 London never gets boring",
+              "slug": "london never gets boring"
+          },
+          {
+              "name": "個人所思 Personal thoughts",
+              "slug": "personal thoughts"
+          },
+          {
+              "name": "在家創業 Homepreneur",
+              "slug": "homepreneur"
+          },
+          {
+              "name": "感情生活 Love hacks",
+              "slug": "love hacks"
+          },
+          {
+              "name": "居家生活 Home style",
+              "slug": "home style"
+          }
+        ]
+        
       }
+      
+      // {
+      //   name: "Personal thoughts",
+      //   subCategories: groupedCategories["個人所思 Personal thoughts"]
+      // }
     ]
+
+    // console.log("Category Group: ", result);
 
     return result.filter(cat => 
       (cat.subCategories && cat.subCategories.length > 0) || cat.slug
@@ -1424,25 +1488,25 @@ export default function Header() {
 
 
     const categoryMappings = {
-      "HerRead": { fullName: "女書 HerRead", slugName: "HerRead" },
-      "Taiwan Justice": { fullName: "台灣與轉型正義 Taiwan and Transitional Justice", slugName: "Taiwan and Transitional Justice" },
-      "Parenting": { fullName: "親子教養 Parenting", slugName: "Parenting" },
-      "Business": { fullName: "商業與創業 Business and start up", slugName: "Business and start up" },
-      "Finance": { fullName: "人生與理財 Life and finance", slugName: "Life and finance" },
-      "Science & Tech": { fullName: "科學與科技 Science and Tech", slugName: "Science and Tech" },
-      "Fiction": { fullName: "小說與自傳 Novel and bio", slugName: "Novel and bio" },
-      "Booklist": { fullName: "閱讀書單 Reading list", slugName: "Readling list" }
+      "HerRead": { fullName: "女書 HerRead", slugName: "女書 HerRead" },
+      "Taiwan and <br />Transitional Justice": { fullName: "台灣與轉型正義 Taiwan and Transitional Justice", slugName: "台灣與轉型正義 Taiwan and Transitional Justice" },
+      "Parenting": { fullName: "親子教養 Parenting", slugName: "親子教養 Parenting" },
+      "Business and <br />start up": { fullName: "商業與創業 Business and start up", slugName: "商業與創業 Business and start up" },
+      "Life and <br />finance": { fullName: "人生與理財 Life and finance", slugName: "life and finance人生與理財 Life and finance" },
+      "Science <br />and Tech": { fullName: "科學與科技 Science and Tech", slugName: "科學與科技 Science and Tech" },
+      "Novel <br />and bio": { fullName: "小說與自傳 Novel and bio", slugName: "小說與自傳 Novel and bio" },
+      "Reading <br />list": { fullName: "閱讀書單 Reading list", slugName: "閱讀書單 Reading list" }
     };
 
     const groupedCategories = {
       "HerRead": [],
-      "Taiwan Justice": [],
+      "Taiwan and <br />Transitional Justice": [],
       "Parenting": [],
-      "Business": [],
-      "Finance": [],
-      "Science & Tech": [],
-      "Fiction": [],
-      "Booklist": []
+      "Business and <br />start up": [],
+      "Life and <br />finance": [],
+      "Science <br />and Tech": [],
+      "Novel <br />and bio": [],
+      "Reading <br />list": []
     };
 
     data.categories.ukProperty.options.forEach(option => {
@@ -1476,7 +1540,7 @@ export default function Header() {
         name: shortName, // Use the short name for display
         fullName: mapping.fullName, // Include the full name if needed
         subCategories: subCategories.length > 0 ? subCategories : undefined,
-        slug: subCategories.length === 0 ? generateSlug(mapping.slugName) : undefined
+        slug: subCategories.length === 0 ? mapping.slugName : undefined
       };
     });
   }
@@ -1538,7 +1602,7 @@ export default function Header() {
     setOpenMobileMenu(openMobileMenu === name ? null : name)
   }
 
-  const baseHref = isUKLifePage ? "/uklife#" : "/book-reviews#"
+  const baseHref = isUKLifePage ? "/uklife/" : "/book-reviews/"
 
   return (
     <>
@@ -1554,7 +1618,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-8 text-sm">
               {isLoading ? (
                 <div className="flex items-center space-x-4">
                   {[...Array(3)].map((_, i) => (
@@ -1600,11 +1664,11 @@ export default function Header() {
                                     <DropdownMenuItem key={subCat.slug} asChild>
                                       <Link 
                                         href={item.name === "Life in UK" ? 
-                                          `/uklife#${subCat.slug}` : 
-                                          `/book-reviews#${subCat.slug}`}
+                                          `/uklife/category/${subCat.name}` : 
+                                          `/book-reviews/category/${subCat.slug.replace(/<br\s*\/?>/gi, "")}`}
                                         className="pl-6 w-full"
                                       >
-                                        {subCat.name}
+                                        {subCat.name.replace(/<br\s*\/?>/gi, "")}
                                       </Link>
                                     </DropdownMenuItem>
                                   ))}
@@ -1613,11 +1677,11 @@ export default function Header() {
                                 <DropdownMenuItem key={category.slug} asChild>
                                   <Link 
                                     href={item.name === "Life in UK" ? 
-                                      `/uklife#${category.slug}` : 
-                                      `/book-reviews#${category.slug}`}
+                                      `/uklife/category/${category.name}` : 
+                                      `/book-reviews/category/${category.slug.replace(/<br\s*\/?>/gi, "")}`}
                                     className="w-full"
                                   >
-                                    {category.name}
+                                    {category.name.replace(/<br\s*\/?>/gi, "")}
                                   </Link>
                                 </DropdownMenuItem>
                               )}
@@ -1652,11 +1716,15 @@ export default function Header() {
                         onMouseEnter={() => setOpenDropdown(category.name || category.slug)}
                         onMouseLeave={() => setOpenDropdown(null)}
                       >
+                      {/* THIS IS HERE THE MENU FOR THE BOOK REVIEW */}
                       <a 
                         className="flex items-center space-x-1 text-foreground hover:text-primary transition-colors duration-200 group font-medium"
-                        href={`#${category.slug}`}  // Assuming category has a slug property
+                        href={`${baseHref}category/${category.slug}`}  // Assuming category has a slug property
                       >
-                        {category.name}
+                        <span dangerouslySetInnerHTML={{ __html: category.name }} className="text-center" />
+                        {/* {category.name} */}
+                        {/* {dangerouslySetInnerHTML={ __html: category.name }} */}
+                        {/* {category.name} */}
 
                           {/* {category.name || category.slug}
                           {category.subCategories && (
@@ -1677,7 +1745,7 @@ export default function Header() {
                           {category.subCategories.map((subCat) => (
                             <DropdownMenuItem key={subCat.slug} asChild>
                               <Link 
-                                href={`${baseHref}${subCat.slug}`}
+                                href={`${baseHref}category/${subCat.name}`}
                                 className="w-full"
                               >
                                 {subCat.name}
@@ -1749,32 +1817,32 @@ export default function Header() {
                             {openMobileMenu === item.name && (
                               <div className="pl-4">
                                 {item.subCategories.map((category) => (
-                                  <div key={category.name || category.slug}>
+                                  <div key={category.name || category.name}>
                                     {category.subCategories ? (
                                       <>
                                         <button
-                                          onClick={() => toggleMobileMenu(category.name || category.slug)}
+                                          onClick={() => toggleMobileMenu(category.name || category.name)}
                                           className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200"
                                         >
                                           {category.name}
-                                          {openMobileMenu === (category.name || category.slug) ? (
+                                          {openMobileMenu === (category.name || category.name) ? (
                                             <ChevronUp className="w-4 h-4" />
                                           ) : (
                                             <ChevronDown className="w-4 h-4" />
                                           )}
                                         </button>
-                                        {openMobileMenu === (category.name || category.slug) && (
+                                        {openMobileMenu === (category.name || category.name) && (
                                           <div className="pl-4">
                                             {category.subCategories.map((subCat) => (
                                               <Link
                                                 key={subCat.slug}
                                                 href={item.name === "Life in UK" ? 
-                                                  `/uklife#${subCat.slug}` : 
-                                                  `/book-reviews#${subCat.slug}`}
+                                                  `/uklife/category/${subCat.name}` : 
+                                                  `/book-reviews/category/${subCat.slug.replace(/<br\s*\/?>/gi, "")}`}
                                                 onClick={() => setIsMenuOpen(false)}
                                                 className="block px-3 py-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200 text-sm"
                                               >
-                                                {subCat.name}
+                                                {subCat.name.replace(/<br\s*\/?>/gi, "")}
                                               </Link>
                                             ))}
                                           </div>
@@ -1783,12 +1851,12 @@ export default function Header() {
                                     ) : (
                                       <Link
                                         href={item.name === "Life in UK" ? 
-                                          `/uklife#${category.slug}` : 
-                                          `/book-reviews#${category.slug}`}
+                                          `/uklife/category/${category.name}` : 
+                                          `/book-reviews/category/${category.slug.replace(/<br\s*\/?>/gi, "")}`}
                                         onClick={() => setIsMenuOpen(false)}
                                         className="block px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200"
                                       >
-                                        {category.name}
+                                        {category.name.replace(/<br\s*\/?>/gi, "")}
                                       </Link>
                                     )}
                                   </div>
@@ -1815,11 +1883,11 @@ export default function Header() {
                         {category.subCategories ? (
                           <>
                             <button
-                              onClick={() => toggleMobileMenu(category.name || category.slug)}
+                              onClick={() => toggleMobileMenu(category.name || category.name)}
                               className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200 font-medium"
                             >
                               {category.name}
-                              {openMobileMenu === (category.name || category.slug) ? (
+                              {openMobileMenu === (category.name || category.name) ? (
                                 <ChevronUp className="w-5 h-5" />
                               ) : (
                                 <ChevronDown className="w-5 h-5" />
@@ -1830,7 +1898,7 @@ export default function Header() {
                                 {category.subCategories.map((subCat) => (
                                   <Link
                                     key={subCat.slug}
-                                    href={`${baseHref}${subCat.slug}`}
+                                    href={`${baseHref}category/${subCat.name}`}
                                     onClick={() => setIsMenuOpen(false)}
                                     className="block px-3 py-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200"
                                   >
@@ -1842,7 +1910,7 @@ export default function Header() {
                           </>
                         ) : (
                           <Link
-                            href={`${baseHref}${category.slug}`}
+                            href={`${baseHref}category/${category.name}`}
                             onClick={() => setIsMenuOpen(false)}
                             className="block px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted transition-all duration-200 font-medium"
                           >

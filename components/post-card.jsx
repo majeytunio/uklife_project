@@ -56,8 +56,8 @@ export default function PostCard({ post, featured = false }) {
 
   // Generate the correct link path
   const linkPath = safePost.category === "life-blog" 
-    ? `/uklife/${safePost.slug}` 
-    : `/${safePost.category}/${safePost.slug}`
+    ? `/uklife/${safePost.id}` 
+    : `/${safePost.category}/${safePost.id}`
 
   
   const [imageError, setImageError] = useState(false);
