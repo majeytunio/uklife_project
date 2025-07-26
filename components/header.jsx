@@ -1363,22 +1363,6 @@ export default function Header() {
           {
               "name": "倫敦總有新鮮事 London never gets boring",
               "slug": "london never gets boring"
-          },
-          {
-              "name": "個人所思 Personal thoughts",
-              "slug": "personal thoughts"
-          },
-          {
-              "name": "在家創業 Homepreneur",
-              "slug": "homepreneur"
-          },
-          {
-              "name": "感情生活 Love hacks",
-              "slug": "love hacks"
-          },
-          {
-              "name": "居家生活 Home style",
-              "slug": "home style"
           }
         ]
         

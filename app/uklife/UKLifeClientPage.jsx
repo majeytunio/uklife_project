@@ -600,7 +600,7 @@ export default function UKLifeClientPage({ initialPosts = [], initialUniqueSubTo
                         </span>
                       </h2>
                       <Link 
-                        href={`/uk-life/category/${generateSlug(topic)}`}
+                        href={`/uklife/category/${topic}`}
                         className="text-sm font-medium text-primary hover:text-primary-hover transition-colors"
                       >
                         All →

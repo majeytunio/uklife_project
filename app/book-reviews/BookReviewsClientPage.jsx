@@ -692,7 +692,7 @@ export default function BookReviewsClientPage({ initialPosts = [], initialUnique
                             </span>
                           </h2>
                           <Link 
-                            href={`/book-reviews/category/${generateSlug(tag)}`}
+                            href={`/book-reviews/category/${tag}`}
                             className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
                           >
                             All →
