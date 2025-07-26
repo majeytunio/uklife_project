@@ -381,10 +381,12 @@
 
 
 
-
 import { NextResponse } from 'next/server'
 import { Client } from '@notionhq/client'
 import { generateSlug } from '../../../../lib/utils'
+
+export const dynamic = 'force-dynamic' // Disable all caching
+export const runtime = 'edge' // Optional: Better for Notion API
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
 
