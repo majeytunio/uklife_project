@@ -138,7 +138,6 @@ import { generateSlug, removeChinese } from "../../../../../../lib/utils";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 export async function GET(request, { params }) {
