@@ -379,7 +379,7 @@ export async function GET() {
                    post.properties?.['Post name']?.title?.[0]?.plain_text || 
                    'Untitled'
 
-      console.log("Post Data: ", post);
+      // console.log("Post Data: ", post);
       
       return {
         id: post.id,
