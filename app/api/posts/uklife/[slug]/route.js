@@ -70,7 +70,7 @@ import { NextResponse } from 'next/server';
 import { Client } from '@notionhq/client';
 import { validate as uuidValidate } from 'uuid';
 
-// export const dynamic = 'force-dynamic' // Disable all caching
+export const dynamic = 'force-dynamic' // Disable all caching
 // export const runtime = 'edge' // Optional: Better for Notion API
 
 

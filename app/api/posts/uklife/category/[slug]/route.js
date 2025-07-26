@@ -135,8 +135,8 @@ import { Client } from "@notionhq/client";
 
 import { generateSlug, removeChinese } from "../../../../../../lib/utils";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
