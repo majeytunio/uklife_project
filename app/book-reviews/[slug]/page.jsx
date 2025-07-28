@@ -345,7 +345,7 @@ export default function BookReviewDetailPage() {
               )}
 
               <div className="text-gray-300">
-                <ReactMarkdown
+                {/* <ReactMarkdown
                   children={contentMarkdown}
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]}
@@ -362,7 +362,166 @@ export default function BookReviewDetailPage() {
                     code: ({node, ...props}) => <code className="bg-gray-700 text-gray-100 px-2 py-1 rounded text-sm" {...props} />,
                     pre: ({node, ...props}) => <pre className="bg-gray-800 p-4 rounded-lg overflow-x-auto my-4" {...props} />,
                   }}
-                />
+                /> */}
+
+
+                <ReactMarkdown
+  children={contentMarkdown}
+  remarkPlugins={[remarkGfm]}
+  rehypePlugins={[rehypeRaw]}
+  components={{
+    // Headings
+    h1: ({ node, ...props }) => (
+      <h1 style={{ 
+        fontSize: "2rem", 
+        marginBottom: "20px", 
+        fontWeight: "bolder",
+        color: "#e5e7eb" // Light gray for dark theme
+      }} {...props} />
+    ),
+    h2: ({ node, ...props }) => (
+      <h2 style={{
+        fontSize: "1.25rem",
+        marginBottom: "8px", 
+        fontWeight: "bold",
+        color: "#e5e7eb"
+      }} {...props} />
+    ),
+    
+    // Paragraph
+    p: ({ node, ...props }) => (
+      <p style={{
+        marginBottom: "20px",
+        color: "#d1d5db" // Lighter gray for text
+      }} {...props} />
+    ),
+    
+    // Horizontal rule
+    hr: ({ node, ...props }) => (
+      <hr style={{
+        borderColor: "#374151", // Dark gray border
+        margin: "12px 0"
+      }} {...props} />
+    ),
+    
+    // Links
+    a: ({ node, ...props }) => (
+      <a style={{
+        color: "#60a5fa", // Blue that works in dark mode
+        textDecoration: "none",
+        fontWeight: "500"
+      }} {...props} />
+    ),
+    
+    // Code blocks
+    code: ({ node, inline, className, children, ...props }) => (
+      <code
+        style={{
+          background: "#1f2937", // Dark gray background
+          color: "#f3f4f6", // Light text
+          padding: inline ? "0.2em 0.4em" : "1em",
+          borderRadius: "3px",
+          fontFamily: "monospace",
+          display: inline ? "inline-block" : "block",
+          marginBottom: inline ? "0" : "20px",
+          overflowX: "auto"
+        }}
+        {...props}
+      >
+        {children}
+      </code>
+    ),
+    
+    // Blockquotes
+    blockquote: ({ node, ...props }) => (
+      <blockquote
+        style={{
+          borderLeft: "4px solid #4b5563",
+          paddingLeft: "1em",
+          color: "#9ca3af",
+          marginBottom: "20px",
+          backgroundColor: "rgba(17, 24, 39, 0.5)" // Slightly darker background
+        }}
+        {...props}
+      />
+    ),
+    
+    // Lists
+    ul: ({ node, depth, ...props }) => (
+      <ul 
+        style={{
+          listStyleType: depth > 0 ? 'circle' : 'disc',
+          paddingLeft: depth > 0 ? '1.5rem' : '1rem',
+          marginBottom: '1.5rem',
+          color: '#d1d5db' // Light gray text
+        }}
+        {...props}
+      />
+    ),
+    
+    ol: ({ node, depth, ...props }) => (
+      <ol 
+        style={{
+          listStyleType: depth > 0 ? 'lower-alpha' : 'decimal',
+          paddingLeft: depth > 0 ? '1.5rem' : '1rem',
+          marginBottom: '1rem',
+          color: '#d1d5db'
+        }}
+        {...props}
+      />
+    ),
+    
+    li: ({ node, ordered, ...props }) => (
+      <li 
+        style={{
+          marginBottom: '0.5rem',
+          lineHeight: '1.6',
+          position: 'relative',
+          paddingLeft: '0.5rem',
+          color: '#d1d5db'
+        }}
+        {...props}
+      />
+    ),
+    
+    // Tables (if using remarkGfm)
+    table: ({ node, ...props }) => (
+      <div style={{ overflowX: "auto", marginBottom: "20px" }}>
+        <table
+          style={{
+            borderCollapse: "collapse",
+            width: "100%",
+            backgroundColor: "#1f2937"
+          }}
+          {...props}
+        />
+      </div>
+    ),
+    th: ({ node, ...props }) => (
+      <th
+        style={{
+          border: "1px solid #374151",
+          padding: "8px 12px",
+          textAlign: "left",
+          backgroundColor: "#111827"
+        }}
+        {...props}
+      />
+    ),
+    td: ({ node, ...props }) => (
+      <td
+        style={{
+          border: "1px solid #374151",
+          padding: "8px 12px",
+          color: "#d1d5db"
+        }}
+        {...props}
+      />
+    )
+  }}
+/>
+
+
               </div>
             </div>
           </div>

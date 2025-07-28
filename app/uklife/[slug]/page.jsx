@@ -384,11 +384,113 @@ export default function UKLifeDetailPage() {
                 </p>
               )}
 
+
               <ReactMarkdown
                 children={contentMarkdown}
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw]}
+                components={{
+                  // Override headings
+                  h1: ({ node, ...props }) => (
+                    <h1 style={{ fontSize: "2rem", marginBottom: "20px", fontWeight: "bolder" }} {...props} />
+                  ),
+                  h2: ({ node, ...props }) => (
+                    <h2 className="text-xl" style={{marginBottom: "8px", fontWeight: "bold"}} {...props} />
+                  ),
+                  
+                  // Style links
+                  a: ({ node, ...props }) => (
+                    <a className="text-primary" {...props} />
+                  ),
+
+                  // Style links
+                  p: ({ node, ...props }) => (
+                    <p style={{marginBottom: "20px"}} {...props} />
+                  ),
+
+                  // Style links
+                  hr: ({ node, ...props }) => (
+                    <hr className="border-gray-700 my-3" {...props} />
+                  ),
+
+                  
+                  
+                  // Style code blocks
+                  code: ({ node, inline, className, children, ...props }) => (
+                    <code
+                      style={{
+                        background: "#f6f8fa",
+                        padding: "0.2em 0.4em",
+                        borderRadius: "3px",
+                        fontFamily: "monospace",
+                        marginBottom: "20px"
+                      }}
+                      {...props}
+                    >
+                      {children}
+                    </code>
+                  ),
+                  
+                  // Style blockquotes
+                  blockquote: ({ node, ...props }) => (
+                    <blockquote
+                      style={{
+                        borderLeft: "4px solid #ddd",
+                        paddingLeft: "1em",
+                        color: "#666",
+                        marginBottom: "20px"
+                      }}
+                      {...props}
+                    />
+                  ),
+
+
+                  // Add list customizations
+                  ul: ({ node, depth, ...props }) => (
+                    <ul 
+                      className={`custom-list ${depth > 0 ? 'nested-list' : ''}`}
+                      style={{
+                        listStyleType: depth > 0 ? 'circle' : 'disc',
+                        paddingLeft: depth > 0 ? '1.5rem' : '1rem',
+                        marginBottom: '1.5rem',
+                        color: '#333',
+                      }}
+                      {...props}
+                    />
+                  ),
+                  
+                  ol: ({ node, depth, ...props }) => (
+                    <ol 
+                      style={{
+                        listStyleType: depth > 0 ? 'lower-alpha' : 'decimal',
+                        paddingLeft: depth > 0 ? '1.5rem' : '1rem',
+                        marginBottom: '1rem',
+                      }}
+                      {...props}
+                    />
+                  ),
+                  
+                  li: ({ node, ordered, ...props }) => (
+                    <li 
+                      style={{
+                        marginBottom: '0.5rem',
+                        lineHeight: '1.6',
+                        position: 'relative',
+                        paddingLeft: '0.5rem',
+                      }}
+                      {...props}
+                    />
+                  ),
+
+                  
+                }}
               />
+
+              {/* <ReactMarkdown
+                children={contentMarkdown}
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+              /> */}
 
               {/* <ReactMarkdown>{contentMarkdown}</ReactMarkdown> */}
             </div>

@@ -579,9 +579,9 @@ export default function BookReviewsClientPage({ initialPosts = [], initialUnique
     <div className="min-h-screen flex flex-col bg-gray-900 theme-book-reviews">
       <Header />
 
-      <section className="relative bg-gradient-to-r from-blue-900 via-blue-700 to-purple-700 text-white py-20 pt-32 overflow-hidden">
+      <section className="relative from-blue-900 via-blue-700 to-purple-700 text-white py-20 pt-32 overflow-hidden">
         <Image
-          src="/images/bookreview.jpeg"
+          src="/images/book_review_image.jpg"
           alt="Book Reviews Header"
           fill
           className="object-cover absolute inset-0 opacity-40"

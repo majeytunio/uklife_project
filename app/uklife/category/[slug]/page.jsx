@@ -10,6 +10,8 @@ import Link from "next/link"
 import { Button } from "../../../../components/ui/button"
 import { generateSlug } from "../../../../lib/utils"
 
+import 'page.css'
+
 export default function UKLifeClientPage({params, initialPosts = [], initialUniqueSubTopics = [] }) {
   const [posts, setPosts] = useState(initialPosts)
   const [uniqueSubTopics, setUniqueSubTopics] = useState(initialUniqueSubTopics)
