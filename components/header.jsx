@@ -1310,6 +1310,7 @@ export default function Header() {
     const result = [
       {
         name: "親子育兒 Raising kids",
+        slug: "親子育兒 Raising kids",
         subCategories: [
             {
                 "name": "倫敦育兒 Raising kids in London",
@@ -1332,6 +1333,7 @@ export default function Header() {
       },
       {
         name: "親子旅遊 Travel with kids",
+        slug: "親子旅遊 Travel with kids",
         subCategories: 
         [
           {
@@ -1350,10 +1352,11 @@ export default function Header() {
       },
       {
         name: "英倫下午茶特輯 London afternoon tea",
-        slug: "london afternoon tea"
+        slug: "英倫下午茶特輯 London afternoon tea"
       },
       {
         name: "倫敦 London",
+        slug: "倫敦 London",
         subCategories: 
         [
           {
@@ -1369,6 +1372,7 @@ export default function Header() {
       },
       {
         name: "個人所思 Personal thoughts",
+        slug: "個人所思 Personal thoughts",
         subCategories: 
         [
           {
