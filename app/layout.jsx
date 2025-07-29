@@ -4,8 +4,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Notion Sync Blog",
-  description: "A blog synced from Notion using Make.com and Next.js",
+  title: "Yilungc",
+  description: "Dive into insightful book reviews or explore captivating UK life experiences.",
   icons: {
     icon: [
       { url: 'images/favicon.png', type: 'image/png', sizes: '512x512' },

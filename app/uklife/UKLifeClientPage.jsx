@@ -541,7 +541,7 @@ export default function UKLifeClientPage({ initialPosts = [], initialUniqueSubTo
           <div className="hidden md:flex items-center justify-center h-full p-8">
             <div className="relative w-full h-full max-w-md max-h-[400px] lg:max-h-[500px] animate-scale-in group" style={{ animationDelay: "0.8s" }}>
               <Image
-                src="/images/uklifecover.jpeg"
+                src="/images/uk_life_header_image.JPG"
                 alt="UK Life Decorative"
                 fill
                 className="object-cover rounded-lg shadow-2xl group-hover:shadow-3xl transition-all duration-300 group-hover:scale-105"
