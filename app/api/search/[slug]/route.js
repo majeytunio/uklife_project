@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
   const { slug } = params;
   const { searchParams } = new URL(request.url);
 
-  console.log("SEARCH TERM: ", slug)
+//   console.log("SEARCH TERM: ", slug)
   
   try {
     // 1. Get the UK Life page

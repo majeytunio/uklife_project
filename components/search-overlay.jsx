@@ -32,7 +32,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
           const response = await fetch(`/api/search/${encodeURIComponent(searchTerm)}`)
           const data = await response.json()
 
-          console.log("Data: ", data);
+          // console.log("Data: ", data);
 
           // Check if the response is successful and has posts
           if (data.success && data.data?.posts) {
