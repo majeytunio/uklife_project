@@ -23,14 +23,23 @@ export default function SearchOverlay({ isOpen, onClose }) {
     }
   }, [isOpen])
 
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       if (searchTerm.length > 2) {
         setLoading(true)
         try {
-          const response = await fetch(`/api/search?query=${encodeURIComponent(searchTerm)}`)
+          const response = await fetch(`/api/search/${encodeURIComponent(searchTerm)}`)
           const data = await response.json()
-          setSearchResults(data)
+
+          console.log("Data: ", data);
+
+          // Check if the response is successful and has posts
+          if (data.success && data.data?.posts) {
+            setSearchResults(data.data.posts)
+          } else {
+            setSearchResults([])
+          }
         } catch (error) {
           console.error("Error fetching search results:", error)
           setSearchResults([])
@@ -70,7 +79,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                 {searchResults.map((post) => (
                   <Link
                     key={post.id}
-                    href={`/${post.category === "life-blog" ? "uklife" : post.category}/${post.slug}`}
+                    href={`/${post.category}/${post.id}`}
                     onClick={onClose}
                     className="block p-3 rounded-md hover:bg-muted transition-colors"
                   >
@@ -88,6 +97,14 @@ export default function SearchOverlay({ isOpen, onClose }) {
                       >
                         {post.category === "book-reviews" ? "Book Review" : "UK Life"}
                       </span>
+                      {post.tags.length > 0 && (
+                        <>
+                          <span className="mx-2">•</span>
+                          <span className="line-clamp-1">
+                            {post.tags.join(', ')}
+                          </span>
+                        </>
+                      )}
                     </div>
                   </Link>
                 ))}
